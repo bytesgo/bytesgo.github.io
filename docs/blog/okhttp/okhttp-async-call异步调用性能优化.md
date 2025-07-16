@@ -137,3 +137,32 @@ private fun promoteAndExecute(): Boolean {
 
 基于以上原因，不建议在并发量高的场景下使用okhttp的异步功能。
 
+## 性能优化
+
+如果实在避免不了使用okhttp的异步功能，那么可以通过以下方式来优化性能：
+
+1. 线程池参数优化：限定线程池的线程数，避免线程数过多导致OOM。
+2. 根据业务特点自定义请求并发数
+
+```java
+    ThreadPoolExecutor executorService =
+        new ThreadPoolExecutor(10, 10, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
+    Dispatcher dispatcher = new Dispatcher(executorService);
+    dispatcher.setMaxRequests(4096);
+    dispatcher.setMaxRequestsPerHost(4096);
+    OkHttpClient client = new OkHttpClient.Builder().dispatcher(dispatcher).build();
+    Request.Builder requestBuilder = new Request.Builder().url("https://www.baidu.com");
+
+    client.newCall(requestBuilder.build()).enqueue(new Callback() {
+
+      @Override
+      public void onResponse(Call arg0, Response arg1) throws IOException {
+
+      }
+
+      @Override
+      public void onFailure(Call arg0, IOException arg1) {
+
+      }
+    });
+```
