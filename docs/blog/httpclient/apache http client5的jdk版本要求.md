@@ -6,11 +6,11 @@ categories:
  - httpclient5
 ---
 
-# apache http client5的jdk版本要求
+# Apache HTTP Client 5 的 JDK 版本要求
 
 时间有限，先说结论。
 
-apache httpclient5 最低jdk版本要求是 Java SE 8 Maintenance Release 3 （JSR 337）
+Apache HttpClient 5 最低 JDK 版本要求是 Java SE 8 Maintenance Release 3 （JSR 337）
 
 ## HttpClient5邮件咨询
 
@@ -56,4 +56,4 @@ earlier versions of Java JRE.
 
 Oleg
 
-意思是Apache HttpClient 5.x对jdk的最低版本依赖是Java SE 8 Maintenance Release 3
+意思是Apache HttpClient 5.x对JDK的最低版本依赖是Java SE 8 Maintenance Release 3
