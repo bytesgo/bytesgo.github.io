@@ -21,19 +21,22 @@ JVM堆内存是Java应用中最重要的内存区域之一，主要用于存放�
 - 使用jmap命令：
   
   ```shell
-  jmap -dump:format=b,file=heapdump.hprof <pid>
+  jmap -dump:live,format=b,file=heapdump.hprof <pid>
   ```
 
 - 使用JVM参数自动导出（如发生OOM）：
   
   ```shell
-  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/path/to/heapdump.hprof
+  -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/usr/local/heapdump.hprof
   ```
 
 #### 2. 常用堆分析工具
 
 - **MAT（Memory Analyzer Tool）**  
   Eclipse出品的堆分析工具，支持分析大文件，查找内存泄漏、查看对象引用关系等。
+
+- **JProfiler**  
+  商业产品，支持插件扩展，功能丰富。这个工具适合高级用户，需要掌握JVM的内存管理机制。
 
 - **VisualVM**  
   集成了堆快照分析、内存监控、GC分析等功能，支持插件扩展。
@@ -66,6 +69,74 @@ jmap -dump:format=b,file=heapdump.hprof <pid>
 # 分析堆快照（MAT/VisualVM等工具打开heapdump.hprof文件）
 ```
 
+#### 6. jmap 其他常用用法
+
+`jmap` 不仅可以导出堆快照，还支持多种内存相关操作，常见用法如下：
+
+- 查看堆内存概要信息：
+
+  ```shell
+  jmap -heap <pid>
+  ```
+
+- 查看对象实例统计（类似 MAT 的 Histogram）：
+
+  ```shell
+  jmap -histo <pid>
+  ```
+
+- 查看类的详细信息（包括类加载器）：
+
+  ```shell
+  jmap -clstats <pid>
+  ```
+
+- 查看 JVM 内存映射信息：
+
+  ```shell
+  jmap -mem <pid>
+  ```
+
+- 查看 finalizer 队列中的对象：
+
+  ```shell
+  jmap -finalizerinfo <pid>
+  ```
+
+> 注意：部分命令在不同 JDK 版本下可能略有差异，具体可通过 `jmap -help` 查看所有支持的参数。
+
+#### 7. jstack 常用用法
+
+`jstack` 是JDK自带的线程堆栈分析工具，常用于排查线程死锁、阻塞、CPU飙高等问题。常见用法如下：
+
+- 查看指定Java进程的线程堆栈信息：
+
+  ```shell
+  jstack <pid>
+  ```
+
+- 将线程堆栈信息输出到文件：
+
+  ```shell
+  jstack <pid> > thread_dump.txt
+  ```
+
+- 多次采集线程堆栈（适合分析线程状态变化）：
+
+  ```shell
+  for i in {1..5}; do jstack <pid> > thread_dump_$i.txt; sleep 5; done
+  ```
+
+- 分析死锁：
+
+  `jstack` 输出中如有 `Found one Java-level deadlock:` 字样，即表示检测到死锁。
+
+> 注意：  
+> - 建议用 root 或与目标进程相同用户执行。  
+> - 对于高并发或生产环境，建议多次采集分析。  
+> - 也可结合 `jps` 命令查找目标进程PID。
+
+更多参数可通过 `jstack -help` 查看。
 ---
 
 如需更深入的堆内存分析，可结合GC日志、线程Dump等信息综合排查。
