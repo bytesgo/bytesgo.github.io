@@ -36,14 +36,6 @@ const blogTheme = getThemeConfig({
         message: 'www.bytesgo.com',
         copyright: 'MIT License | leeyazhou',
         version: false,
-        icpRecord: {
-          name: '京ICP备1xxxx号',
-          link: 'https://beian.miit.gov.cn/'
-        },
-        securityRecord: {
-          name: '公网安备xxxxx',
-          link: 'https://www.xxx.gov.cn/xxx'
-        },
     },
 
     // 主题色修改

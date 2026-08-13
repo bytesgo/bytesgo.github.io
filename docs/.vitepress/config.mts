@@ -1,9 +1,7 @@
 import { defineConfig } from 'vitepress'
-
-// 导入主题的配置
+import { SponsorPlugin } from 'vitepress-plugin-sponsor'
+import { CATEGORIES, getBlogSidebar } from './autoSidebar'
 import { blogTheme } from './blog-theme'
-import { SponsorPlugin } from "vitepress-plugin-sponsor";
-import { getLeetCodeSidebar, getFlatBlogSidebar } from './autoSidebar'
 
 // 如果使用 GitHub/Gitee Pages 等公共平台部署
 // 通常需要修改 base 路径，通常为“/仓库名/”
@@ -82,15 +80,12 @@ export default defineConfig({
             },
             {
                 text: '技术随笔',
-                items: [
-                    { text: '计算机网络', link: '/blog/ComputerNetworks/' },
-                    { text: 'MySQL', link: '/blog/MySQL/' },
-                    { text: 'Linux', link: '/blog/Linux/' },
-                ]
+                items: CATEGORIES.map((cat) => ({
+                    text: cat.text,
+                    link: `/blog/${cat.dir}/`
+                }))
             },
-            { text: '力扣每日一题', link: '/blog/leet-code/' },
-            {text: '随笔',link: '/blog/Life/'},
-            
+            { text: '力扣每日一题', link: '/blog/algorithm/leet-code/' },
             { text: '量化日志', link: '/stock/' },
             {
                 text: '赞助',
@@ -111,9 +106,14 @@ export default defineConfig({
         ],
         // 侧边栏
         sidebar: {
-            "/blog/leet-code/": getLeetCodeSidebar(),
-            ...getFlatBlogSidebar(),
+            ...getBlogSidebar(),
         },
+    },
+    // 代码高亮：shiki 2.x 不再内置 mysql 语言，将 mysql 映射到 sql 以保留 MySQL 代码块高亮
+    markdown: {
+        languageAlias: {
+            mysql: 'sql'
+        }
     },
     vite: {
         plugins: [
