@@ -154,11 +154,11 @@ function getLeetCodeGroups(catDir: string, subDir: string): SidebarGroup[] {
   for (const c of CHAPTERS) {
     const items = buckets.get(c.key) ?? []
     items.sort(byNumber)
-    if (items.length) result.push({ text: c.text, collapsed: false, items })
+    if (items.length) result.push({ text: c.text, collapsed: true, items })
   }
   // 未声明 chapter 的文章兜底放到「其他」组
   if (orphans.length) {
-    result.push({ text: '其他', collapsed: false, items: orphans.sort(byNumber) })
+    result.push({ text: '其他', collapsed: true, items: orphans.sort(byNumber) })
   }
   return result
 }
@@ -172,11 +172,11 @@ export function getBlogSidebar(): Record<string, SidebarGroup[]> {
   for (const cat of CATEGORIES) {
     const subGroups: SidebarGroup[] = cat.subs.map((sub) => {
       if (sub.dir === 'leet-code') {
-        return { text: sub.text, collapsed: false, items: getLeetCodeGroups(cat.dir, sub.dir) }
+        return { text: sub.text, collapsed: true, items: getLeetCodeGroups(cat.dir, sub.dir) }
       }
-      return { text: sub.text, collapsed: false, items: scanPosts(cat.dir, sub.dir) }
+      return { text: sub.text, collapsed: true, items: scanPosts(cat.dir, sub.dir) }
     })
-    result[`/blog/${cat.dir}/`] = [{ text: cat.text, collapsed: false, items: subGroups }]
+    result[`/blog/${cat.dir}/`] = [{ text: cat.text, collapsed: true, items: subGroups }]
   }
   return result
 }

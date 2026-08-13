@@ -60,7 +60,7 @@ export default defineConfig({
             text: '上次更新于'
         },
         // 设置logo
-        logo: '/img/favicon.ico',
+        logo: '/img/bytesgo.png',
         // editLink: {
         //   pattern:
         //     'https://github.com/ATQQ/sugar-blog/tree/master/packages/blogpress/:path',

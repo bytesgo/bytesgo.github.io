@@ -29,6 +29,27 @@ function collapseStockTables() {
     })
 }
 
+// 桌面端侧边栏折叠按钮：左下角三个横杠，默认折叠，点击展开/收起左侧导航
+function setupSidebarToggle() {
+    if (typeof window === 'undefined') return
+    // 仅在桌面端（>=960px）生效，移动端保留 VitePress 原生抽屉
+    if (!window.matchMedia('(min-width: 960px)').matches) return
+    if (window.document.querySelector('.sidebar-toggle-btn')) return
+
+    const btn = document.createElement('button')
+    btn.className = 'sidebar-toggle-btn'
+    btn.type = 'button'
+    btn.setAttribute('aria-label', '切换侧边栏')
+    btn.innerHTML = '<span class="bar"></span><span class="bar"></span><span class="bar"></span>'
+
+    btn.addEventListener('click', () => {
+        const open = document.body.classList.toggle('sidebar-open')
+        btn.classList.toggle('open', open)
+    })
+
+    document.body.appendChild(btn)
+}
+
 export default {
     extends: BlogTheme,
     enhanceApp({ app, router }) {
@@ -37,8 +58,11 @@ export default {
         }
         app.mixin({
             mounted() {
-                if (typeof window !== 'undefined' && window.location.pathname.startsWith('/stock/')) {
-                    setTimeout(collapseStockTables, 0)
+                if (typeof window !== 'undefined') {
+                    if (window.location.pathname.startsWith('/stock/')) {
+                        setTimeout(collapseStockTables, 0)
+                    }
+                    setTimeout(setupSidebarToggle, 0)
                 }
             }
         })

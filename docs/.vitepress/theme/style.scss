@@ -24,3 +24,74 @@ body {
 strong {
   text-shadow: 0.8px 0;
 }
+
+// ===== 左下角侧边栏折叠按钮 =====
+.sidebar-toggle-btn {
+  position: fixed;
+  left: 20px;
+  bottom: 24px;
+  z-index: 70;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 50%;
+  background: var(--vp-c-bg);
+  box-shadow: var(--vp-c-shadow-2);
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: var(--vp-c-bg-soft);
+  }
+
+  .bar {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--vp-c-text-1);
+    border-radius: 1px;
+    transition: transform 0.25s, opacity 0.25s;
+  }
+
+  // 展开态三条横杠变成 X
+  &.open {
+    .bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .bar:nth-child(2) {
+      opacity: 0;
+    }
+    .bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+}
+
+@media (min-width: 960px) {
+  .sidebar-toggle-btn {
+    display: flex;
+  }
+}
+
+// ===== 桌面端侧边栏：默认折叠，点击展开/收起（推挤式，非弹窗） =====
+@media (min-width: 960px) {
+  // 折叠态：隐藏侧边栏 + 内容占满全宽
+  body:not(.sidebar-open) {
+    .VPSidebar {
+      transform: translateX(-100%) !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+    .VPContent.has-sidebar {
+      padding-left: 0 !important;
+    }
+    .VPLocalNav.has-sidebar {
+      padding-left: 0 !important;
+    }
+  }
+}

@@ -8,7 +8,7 @@
     "gen:index": "node --experimental-strip-types docs/.vitepress/generateIndex.ts",
     "predocs:dev": "yarn gen:index",
     "predocs:build": "yarn gen:index",
-    "docs:dev": "vitepress dev docs",
+    "docs:dev": "yarn predocs:dev && vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
   },
