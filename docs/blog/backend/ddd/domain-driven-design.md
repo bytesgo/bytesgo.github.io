@@ -80,7 +80,7 @@ tags:
 
 ### 洋葱架构/简洁架构(Onion Architecture/The clean Architecture)
 
-![洋葱架构/简洁架构](/img/ddd-onion-architecture.png)
+![洋葱架构/简洁架构](/img/ddd-onion-architecture.webp)
 
 ### 命令查询职责分离(Command-Query Responsibility Segregation)
 

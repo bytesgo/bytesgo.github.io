@@ -27,25 +27,23 @@ export default defineConfig({
         // 配置网站的图标（显示在浏览器的 tab 上）
         // ['link', { rel: 'icon', href: `${base}favicon.ico` }], // 修改了 base 这里也需要同步修改
         ['link', { rel: 'icon', href: 'img/favicon.ico' }],
-        // [
-        //     'link',
-        //     { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-web/style.css' }
-        // ],
         [
             'link',
-            { rel: 'stylesheet', href: 'https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.css' }
+            { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-web/lxgwwenkaiscreen/result.css' }
         ],
         [
             'script',
             {},
             `
             var _hmt = _hmt || [];
-            (function() {
+            // 延迟到页面 load 后加载，避免统计脚本阻塞首屏渲染
+            window.addEventListener('load', function() {
             var hm = document.createElement("script");
             hm.src = "https://hm.baidu.com/hm.js?13deb3118acd0041fe7f3fc5c44a48ef";
+            hm.async = true;
             var s = document.getElementsByTagName("script")[0]; 
             s.parentNode.insertBefore(hm, s);
-            })();
+            });
             `,
           ],
     ],

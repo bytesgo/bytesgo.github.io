@@ -34,7 +34,7 @@ MySQL 的主从复制的过程是一个 **异步** 的过程，底层是基于 M
 
 MySQL 主从复制是 MySQL 数据库底层自带的功能，所以无需借助第三方工具就可实现。
 
-![](./assets/592.png)
+![](./assets/592.webp)
 
 MySQL 的主从复制过程中，主要有 3 个线程：**master（binlog dump thread）**、**slave（I/O thread 、SQL thread）**，其中 Master 为 1 条线程，Slave 为 2 条线程。
 
