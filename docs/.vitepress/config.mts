@@ -87,12 +87,7 @@ export default defineConfig({
             { text: '量化日志', link: '/stock/' },
             {
                 text: '赞助',
-                items: [
-                    {
-                        text: '成为赞助者',
-                        link: '/sponsor'
-                    }
-                ]
+                link: '/sponsor'
             },
         ],
         // 友链
@@ -121,8 +116,8 @@ export default defineConfig({
                  * 打赏模块样式
                  */
                 type: 'simple',
-                aliPayQR: 'https://www.bytesgo.com/img/aliPayQR.png',
-                weChatQR: 'https://www.bytesgo.com/img/weChatQR.png'
+                aliPayQR: '/img/aliPayQR.webp',
+                weChatQR: '/img/weChatQR.webp'
             })
         ],
         ssr: {

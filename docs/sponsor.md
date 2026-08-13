@@ -12,10 +12,10 @@ outline: false
 ## 赞助方式
 
 - 微信支付
-![支付宝](/img/weChatQR.png)
+![微信支付](/img/weChatQR.webp)
 
 - 支付宝支付
-![支付宝](/img/aliPayQR.png)
+![支付宝支付](/img/aliPayQR.webp)
 
 ## 最后
 

@@ -25,7 +25,7 @@ tags:
 领域模型和软件设计是紧密联系在一起的，软件系统的各个方面的设计都要忠实的反映领域模型，以便明确二者的对应关系。而且需要经常反复检查修改模型，以便更优雅的实现模型。
 那么，领域专家、设计人员和开发人员就要有一套交流的专业术语，可以称之为Ubiquitous Language
 
-![通用语言](/img/ddd-ubiquitous-language.png)
+![通用语言](/img/ddd-ubiquitous-language.webp)
 
 ## 领域驱动设计概念
 
@@ -72,11 +72,11 @@ tags:
 
 ### 分层架构(Layers Architecture)
 
-![分层架构](/img/ddd-layer-architecture.png)
+![分层架构](/img/ddd-layer-architecture.webp)
 
 ### 六边形架构/端口适配器架构(Hexagonal Architecture)
 
-![六边形架构/端口适配器架构](/img/ddd-hexagonal-architecture.png)
+![六边形架构/端口适配器架构](/img/ddd-hexagonal-architecture.webp)
 
 ### 洋葱架构/简洁架构(Onion Architecture/The clean Architecture)
 
@@ -84,13 +84,13 @@ tags:
 
 ### 命令查询职责分离(Command-Query Responsibility Segregation)
 
-![命令查询职责分离](/img/ddd-cqrs-architecture.png)
+![命令查询职责分离](/img/ddd-cqrs-architecture.webp)
 
 ### 事件溯源(Event Source)
 
 事件溯源是一种数据存储的模式，区别于传统仓储存储实体对象的当前状态，事件溯源则存储了影响实体对象变化的所有事件，通过事件历史回溯实体的当前状态。
 
-![事件溯源](/img/ddd-es-architecture.png)
+![事件溯源](/img/ddd-es-architecture.webp)
 
 ## Flower Domain Driven Design
 
@@ -103,7 +103,7 @@ tags:
 - 基于Flower异步特性，异步响应
 
 Flower CQRS架构图
-![命令查询职责分离](/img/ddd-flower-cqrs-architecture.png)
+![命令查询职责分离](/img/ddd-flower-cqrs-architecture.webp)
 
 ### Command
 

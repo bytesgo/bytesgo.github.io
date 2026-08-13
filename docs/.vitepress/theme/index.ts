@@ -3,9 +3,6 @@ import BlogTheme from '@sugarat/theme'
 // 自定义样式重载
 import './style.scss'
 
-// 自定义主题色
-// import './user-theme.css'
-
 // 折叠量化日志(stock)页面的数据表格，减少首屏 DOM 体积
 function collapseStockTables() {
     if (typeof window === 'undefined') return
