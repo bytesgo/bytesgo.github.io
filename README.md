@@ -2,8 +2,8 @@
 
 # BytesGo - 技术博客
 
-[![VitePress](https://img.shields.io/badge/VitePress-1.5.0-646CFF?logo=vitepress)](https://vitepress.dev/)
-[![Vue](https://img.shields.io/badge/Vue-3.5.12-4FC08D?logo=vue.js)](https://vuejs.org/)
+[![VitePress](https://img.shields.io/badge/VitePress-1.6.4-646CFF?logo=vitepress)](https://vitepress.dev/)
+[![Vue](https://img.shields.io/badge/Vue-3.5.41-4FC08D?logo=vue.js)](https://vuejs.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Website](https://img.shields.io/badge/Website-bytesgo.com-green)](https://www.bytesgo.com)
 
@@ -53,13 +53,13 @@ BytesGo 是 leeyazhou 的个人技术博客,基于 VitePress 构建,专注于分
 
 | 技术 | 版本 | 说明 |
 |------|------|------|
-| [VitePress](https://vitepress.dev/) | 1.5.0 | 静态站点生成器 |
-| [Vue](https://vuejs.org/) | 3.5.12 | 前端框架 |
-| [@sugarat/theme](https://theme.sugarat.top/) | 0.5.2 | 博客主题 |
-| [Element Plus](https://element-plus.org/) | 2.7.2 | UI 组件库 |
-| [Pagefind](https://pagefind.app/) | 1.3.0 | 全文搜索引擎 |
-| [TypeScript](https://www.typescriptlang.org/) | 5.1.6 | 类型系统 |
-| [Sass](https://sass-lang.com/) | 1.64.1 | CSS 预处理器 |
+| [VitePress](https://vitepress.dev/) | 1.6.4 | 静态站点生成器 |
+| [Vue](https://vuejs.org/) | 3.5.41 | 前端框架 |
+| [@sugarat/theme](https://theme.sugarat.top/) | 0.5.27 | 博客主题 |
+| [Element Plus](https://element-plus.org/) | 2.14.4 | UI 组件库 |
+| [Pagefind](https://pagefind.app/) | 1.5.2 | 全文搜索引擎 |
+| [TypeScript](https://www.typescriptlang.org/) | 5.9.3 | 类型系统 |
+| [Sass](https://sass-lang.com/) | 1.102.0 | CSS 预处理器 |
 
 ## 📁 项目结构
 
@@ -67,7 +67,7 @@ BytesGo 是 leeyazhou 的个人技术博客,基于 VitePress 构建,专注于分
 bytesgo.com/
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml          # GitHub Actions 自动部署配置
+│       └── auto-deploy.yml    # GitHub Actions 自动部署配置
 ├── docs/
 │   ├── .vitepress/
 │   │   ├── config.mts          # VitePress 配置文件
@@ -93,20 +93,14 @@ bytesgo.com/
 ### 环境要求
 
 - Node.js >= 18.0.0
-- pnpm >= 8.0.0
+- yarn >= 1.22.0
 
 ### 安装依赖
 
-首先安装 pnpm 包管理器:
+安装项目依赖:
 
 ```bash
-npm install -g pnpm
-```
-
-然后安装项目依赖:
-
-```bash
-pnpm install
+yarn install
 ```
 
 ### 本地开发
@@ -114,7 +108,7 @@ pnpm install
 启动开发服务器:
 
 ```bash
-pnpm docs:dev
+yarn docs:dev
 ```
 
 访问 `http://localhost:5173` 查看效果。
@@ -122,7 +116,7 @@ pnpm docs:dev
 ### 构建生产版本
 
 ```bash
-pnpm docs:build
+yarn docs:build
 ```
 
 构建产物将生成在 `docs/.vitepress/dist` 目录。
@@ -130,7 +124,7 @@ pnpm docs:build
 ### 预览构建产物
 
 ```bash
-pnpm docs:serve
+yarn docs:serve
 ```
 
 ## 📦 部署指南
@@ -145,7 +139,7 @@ pnpm docs:serve
 
 2. **配置已包含**
 
-   项目已包含 `.github/workflows/deploy.yml` 配置文件,无需额外配置。
+   项目已包含 `.github/workflows/auto-deploy.yml` 配置文件,无需额外配置。
 
 3. **修改 base 路径**(如果需要)
 
@@ -160,19 +154,19 @@ pnpm docs:serve
 
 4. **推送代码**
 
-   推送到 `main` 分支即可自动触发部署:
+    推送到 `master` 分支即可自动触发部署:
 
    ```bash
    git add .
    git commit -m "update content"
-   git push origin main
+   git push origin master
    ```
 
 #### 方式二: 手动部署
 
 ```bash
 # 构建
-pnpm docs:build
+yarn docs:build
 
 # 进入构建产物目录
 cd docs/.vitepress/dist
@@ -193,7 +187,7 @@ git push -f git@github.com:用户名/仓库名.git main:gh-pages
 2. **构建项目**
 
    ```bash
-   pnpm docs:build
+   yarn docs:build
    ```
 
 3. **推送构建产物**
